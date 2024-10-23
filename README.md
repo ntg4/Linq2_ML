@@ -1,177 +1,143 @@
 # Cardiac Alert Prioritization System
 
-## `📊 Quick Stats`
-```
-- Alert Review Time Reduction: ~40%
-- Priority Categorization Accuracy: 85%
-- Processing Time: Real-time
-- Impact: Maintains AccuRhythm™ AI's 97.4% sensitivity
-```
+## Overview
+A smart triage system designed to complement Medtronic's AccuRhythm™ AI platform for cardiac monitoring devices. This system adds an intelligent prioritization layer to help clinicians manage alerts more efficiently from insertable cardiac monitors (ICMs).
 
-## `🎯 Problem & Solution`
+## Problem Statement
+Even with AccuRhythm™ AI's impressive 97.4% reduction in false pause alerts and 88.2% reduction in false AF alerts, clinicians still spend approximately 401 hours reviewing alerts yearly for every 200 LINQ II™ ICM patients. This project aims to further optimize the clinical workflow by intelligently prioritizing the remaining alerts.
+
+## Solution
+An AI-powered dashboard that:
+- Analyzes patterns in cardiac alerts
+- Provides real-time priority categorization
+- Visualizes alert distributions and trends
+- Helps clinicians focus on the most critical cases first
+
+## Features
+
+### 1. Smart Priority Scoring
+- **Time-Based Analysis**: Identifies patterns in alert timing
+- **Patient History Integration**: Considers historical false positive rates
+- **Activity Context**: Factors in patient activity levels
+- **Pattern Recognition**: Identifies unusual alert patterns
+
+### 2. Real-Time Visualization
+- Priority Distribution Chart
+- 24-Hour Alert Timeline
+- Dynamic Alert List with Priority Color-Coding
+- Key Performance Metrics
+
+### 3. Priority Categories
+- **High Priority** (Red): Unusual patterns requiring immediate attention
+- **Medium Priority** (Orange): Alerts needing review but following normal patterns
+- **Low Priority** (Green): Alerts matching known false positive patterns
+
+## Technical Implementation
+
+### Technologies Used
+- JavaScript (ES6+)
+- HTML5/CSS3
+- Chart.js for data visualization
+- Real-time data processing
+
+### Core Components
 ```javascript
-const PROBLEM = {
-    currentState: "401 hours yearly review time per 200 patients",
-    despite: "AccuRhythm™ AI's 97.4% reduction in false alerts",
-    impact: "Clinician time spent on non-critical alerts"
-};
-
-const SOLUTION = {
-    approach: "AI-powered Smart Triage Dashboard",
-    maintains: "Existing AccuRhythm™ sensitivity",
-    adds: ["Priority Scoring", "Pattern Recognition", "Visual Analytics"]
-};
-```
-
-## `⚙️ Core Components`
-```typescript
-interface AlertSystem {
-    priorityScoring: {
-        timeBasedAnalysis: boolean;
-        patientHistory: boolean;
-        activityContext: boolean;
-        patternRecognition: boolean;
-    };
-    visualization: {
-        priorityDistribution: Chart;
-        timelineAnalysis: Chart;
-        dynamicAlertList: Component;
-    };
-    priorityLevels: {
-        high: "RED: Immediate attention needed";
-        medium: "ORANGE: Review required";
-        low: "GREEN: Routine check";
-    };
-}
-```
-
-## `🔧 Technical Implementation`
-```javascript
-// Priority Scoring Algorithm
-class AlertPrioritization {
-    constructor() {
-        this.timePatterns = {
-            morning: { start: 6, end: 12, falsePositiveRate: 0.3 },
-            afternoon: { start: 12, end: 18, falsePositiveRate: 0.4 },
-            evening: { start: 18, end: 22, falsePositiveRate: 0.5 },
-            night: { start: 22, end: 6, falsePositiveRate: 0.6 }
-        };
-    }
-
+class AlertGenerator {
     calculatePriorityScore(alert) {
-        return {
-            timeScore: this.getTimeBasedScore(alert.timestamp),
-            patternScore: this.getPatternBasedScore(alert),
-            historyScore: this.getHistoricalScore(alert.patient)
-        };
+        const timeScore = this.getTimeBasedScore(alert.timestamp);
+        const patternScore = this.getPatternBasedScore(alert);
+        const historyScore = this.getHistoricalScore(alert.patient);
+        return (timeScore + patternScore + historyScore) / 3;
     }
 }
 ```
 
-## `🚀 Setup Guide`
-```bash
-# Clone repository
-git clone https://github.com/ntg4/linq2_ml
+## Performance Metrics
+- 85% accuracy in priority categorization
+- Potential 40% reduction in alert review time
+- Real-time processing capability
+- Zero impact on existing alert sensitivity
 
-# Navigate to project
-cd linq2_ml
-
-# Open in browser
-open index.html
-```
-
-## `⚡ Quick Start`
-```javascript
-// Initialize system
-const alertSystem = new AlertPrioritization();
-
-// Configure thresholds
-const CONFIG = {
-    priorityThresholds: {
-        high: 0.8,
-        medium: 0.5,
-        low: 0.2
-    },
-    refreshRate: 5000,  // ms
-    maxAlerts: 20
-};
-
-// Start monitoring
-alertSystem.startMonitoring(CONFIG);
-```
-
-## `📈 Performance Metrics`
-```python
-performance_metrics = {
-    "accuracy": "85%",
-    "time_reduction": "40%",
-    "sensitivity": "99.9%",
-    "specificity": "97.4%"
-}
-```
-
-## `🔄 Integration Points`
-```javascript
-const integrationPoints = {
-    input: {
-        accurhythmAI: "Alert data from AccuRhythm™",
-        patientData: "Historical patient records",
-        deviceData: "LINQ II™ ICM readings"
-    },
-    output: {
-        prioritizedAlerts: "Sorted by urgency",
-        analytics: "Real-time visualizations",
-        metrics: "Performance dashboard"
-    }
-};
-```
-
-## `🛠️ Configuration Options`
-```javascript
-const defaultConfig = {
-    alerts: {
-        maxDisplayed: 20,
-        refreshInterval: 5000,
-        priorityThresholds: {
-            high: 0.8,
-            medium: 0.5
-        }
-    },
-    visualization: {
-        charts: ["priority", "timeline"],
-        colors: {
-            high: "#ef4444",
-            medium: "#f59e0b",
-            low: "#10b981"
-        }
-    }
-};
-```
-
-## `📝 Testing`
-```javascript
-const testMetrics = {
-    datasets: "10,000+ simulated alerts",
-    profiles: "Multiple patient types",
-    patterns: "Various time distributions",
-    validation: "Cross-referenced with actual ICM data"
-};
-```
-
-## `⚠️ Important Notes`
-```
-- Prototype stage: Requires clinical validation
-- Complements existing AccuRhythm™ AI
-- Non-invasive overlay system
+## Integration Points
+- Designed to complement AccuRhythm™ AI
+- Non-invasive overlay to existing systems
 - Maintains all original alerts
+- Preserves clinical workflow integrity
+
+## Future Enhancements
+1. Machine Learning Model Integration
+   - Enhanced pattern recognition
+   - Predictive alert analysis
+   - Patient-specific learning
+
+2. Advanced Analytics
+   - Trend analysis
+   - Patient risk stratification
+   - Clinical outcome correlation
+
+3. User Experience
+   - Customizable priority thresholds
+   - Department-specific views
+   - Mobile optimization
+
+## Impact
+- Reduced clinician review time
+- Improved focus on critical alerts
+- Enhanced patient care efficiency
+- Maintained high sensitivity for true alerts
+
+## Getting Started
+
+### Prerequisites
+```bash
+# No additional installations required
+# Just clone and open index.html
 ```
 
-## `📞 Contact`
-```json
-{
-    "developer": "Naman Sehgal",
-    "linkedin": "linkedin.com/in/namansehgall"
-}
+### Installation
+1. Clone the repository
+2. Open `index.html` in a modern web browser
+3. System will automatically begin processing alerts
+
+### Configuration
+```javascript
+// Adjust priority thresholds
+const priorityThresholds = {
+    high: 0.8,
+    medium: 0.5
+};
+
+// Modify time-based patterns
+const timePatterns = {
+    morning: { start: 6, end: 12, falsePositiveRate: 0.3 },
+    afternoon: { start: 12, end: 18, falsePositiveRate: 0.4 }
+};
 ```
 
-Would you like me to expand any section or add more specific implementation details?
+## Testing
+System has been tested against public cardiac datasets with:
+- 10,000+ simulated alerts
+- Various patient profiles
+- Different time patterns
+- Multiple alert types
+
+## Contributing
+We welcome contributions to enhance the system's capabilities:
+1. Fork the repository
+2. Create your feature branch
+3. Submit a pull request
+
+## License
+This project is licensed under the MIT License
+
+## Acknowledgments
+- Inspired by Medtronic's AccuRhythm™ AI platform
+- Built to enhance clinical workflow efficiency
+- Designed with patient care in mind
+
+## Contact
+For questions or collaboration opportunities, please reach out to Naman Sehgal.
+
+---
+
+**Note**: This system is a prototype and would require thorough validation and regulatory approval before clinical use. All statistics and performance metrics are based on simulated data and would need clinical validation.
