@@ -169,10 +169,8 @@ const testMetrics = {
 ## `📞 Contact`
 ```json
 {
-    "developer": "Your Name",
-    "email": "your.email@example.com",
-    "github": "github.com/yourusername",
-    "linkedin": "linkedin.com/in/yourusername"
+    "developer": "Naman Sehgal",
+    "linkedin": "linkedin.com/in/namansehgall"
 }
 ```
 
