@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiac Alert Prioritization Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Cardiac Alert Prioritization Dashboard</h1>
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Alerts Today</h3>
+                <div id="totalAlerts">Loading...</div>
+            </div>
+            <div class="stat-card">
+                <h3>Priority Distribution</h3>
+                <div id="priorityDist">Loading...</div>
+            </div>
+            <div class="stat-card">
+                <h3>False Positive Rate</h3>
+                <div id="falsePositiveRate">Loading...</div>
+            </div>
+        </div>
+        <div class="charts-container">
+            <div class="chart-card">
+                <canvas id="priorityChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <canvas id="timelineChart"></canvas>
+            </div>
+        </div>
+        <div class="alert-list" id="alertList"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
